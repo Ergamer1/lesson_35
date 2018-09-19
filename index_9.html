@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
+  </script>
+  <script>
+    $(function() {
+      var colors = ['red', 'green', 'blue', 'grey', 'yellow', 'pink'];
+      var counter = $('#counter');
+      var increment = $('#increment');
+      var autoIncrement = $('#autoIncrement');
+      var stopAutoIncrement = $('#stopAutoIncrement');
+      var changeCounterColor = $('#changeCounterColor');
+      var interval;
+
+      increment.on('click', function() {
+        counter.text(parseInt(counter.text()) + 1);
+      });
+
+      autoIncrement.on('click', function() {
+        interval = setInterval(function() {
+          counter.text(parseInt(counter.text()) + 1);
+        }, 500);
+      });
+
+      stopAutoIncrement.on('click', function() {
+        clearInterval(interval);
+      });
+
+      changeCounterColor.on('click', function() {
+        var random_number = Math.floor(Math.random() * colors.length);
+        var random_color = colors[random_number];
+        counter.css({
+          background: random_color
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="counter" style="width: 100px; height: 100px; text-align: center; padding: 50px; font-size: 50px">0</div>
+  <input type="button" id="increment" value="Increment">
+  <input type="button" id="autoIncrement" value="Auto Increment">
+  <input type="button" id="stopAutoIncrement" value="Stop Auto Increment">
+  <input type="button" id="changeCounterColor" value="Change Counter Color">
+</body>
+
+</html>
